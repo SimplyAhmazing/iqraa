@@ -13,13 +13,11 @@ class SurasListViewSet(viewsets.ModelViewSet):
 
 
 class SuraAyasListView(generics.ListAPIView):
-    serializer_class = explore_serializers.WordSerializer
+    serializer_class = explore_serializers.AyaSerializer
 
     def get_queryset(self):
         sura_pk = int(self.kwargs['sura_pk'])
-        queryset = quran_models.Sura.objects.get(pk=sura_pk).words.all()
-        # serializer = explore_serializers.AyasSerializer(queryset, many=True)
-        # return Response(serializer.data)
+        queryset = quran_models.Sura.objects.get(pk=sura_pk).ayas.all()
         return queryset
 
 

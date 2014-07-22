@@ -8,6 +8,7 @@ class WordSerializer(serializers.ModelSerializer):
         model = quran_models.Word
 
 class AyaSerializer(serializers.ModelSerializer):
+    words = serializers.RelatedField(many=True)
     class Meta:
         model = quran_models.Aya
 

@@ -13,8 +13,12 @@
           {{ suraItem.name }}
         </li>
       </ul>
-      <h3>{{ sura</h3>
-      <span ng-repeat="word in words| orderBy: number ">{{ word.token }}</span>
+      <h3 ng-model="suraInfo">{{ suraInfo.suraItem.name }}</h3>
+      <ul>
+        <li ng-repeat="aya in suraInfo.ayas| orderBy: number ">
+          <span ng-repeat="word in aya.words track by $index">{{ word }}</span>
+        </li>
+      </ul>
     </div>
     {% endverbatim %}
 
@@ -32,17 +36,13 @@
               alert('error getting suras data');
             });
 
-          // surasFactory.getWords().success(function(data){
-          //   $scope.words = data;
-          //   }).error(function(){
-          //     alert('error getting suras data');
-          //   });
+            $scope.suraInfo = {sura: null, ayas: []};
         };
 
         $scope.openSura = function(suraItem){
           surasFactory.getWords(suraItem.number).success(function(data){
-              console.log(data);
-              $scope.suraInfo = {sura: suraItem.name, ayas: data};
+              $scope.suraInfo = {sura: suraItem, ayas: data};
+              console.log($scope.suraInfo);
             }).error(function(){ alert('error getting suras data')});
         };
         init();
@@ -56,7 +56,7 @@
         };
         factory.getWords = function(suraNumber){
           suraNumber = suraNumber || 1;
-          return $http.get('/explore/suraayas/'.concat(1));
+          return $http.get('/explore/suraayas/'.concat(suraNumber));
         };
         return factory;
       };
