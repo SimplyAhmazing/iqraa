@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="suras">
+  <head>
+    <title>Interactive Quran</title>
+  </head>
+
+  <body>
+    {% verbatim %}
+    <div ng-controller="surasController">
+      <input ng-model="searchText" name="searchText" type="text">
+      <ul>
+        <li ng-repeat="suraItem in suraItems| orderBy: number |filter: searchText" ng-click="openSura(suraItem)">
+          {{ suraItem.name }}
+        </li>
+      </ul>
+      <h3>{{ sura</h3>
+      <span ng-repeat="word in words| orderBy: number ">{{ word.token }}</span>
+    </div>
+    {% endverbatim %}
+
+    <script src="{{ STATIC_URL }}js/angular.js"></script>
+
+    <script>
+      var surasApp = angular.module('suras', []);
+      surasApp.controller('surasController', surasController);
+
+      function surasController($scope, surasFactory){
+        function init(){
+          surasFactory.getSuras().success(function(data){
+            $scope.suraItems = data;
+            }).error(function(){
+              alert('error getting suras data');
+            });
+
+          // surasFactory.getWords().success(function(data){
+          //   $scope.words = data;
+          //   }).error(function(){
+          //     alert('error getting suras data');
+          //   });
+        };
+
+        $scope.openSura = function(suraItem){
+          surasFactory.getWords(suraItem.number).success(function(data){
+              console.log(data);
+              $scope.suraInfo = {sura: suraItem.name, ayas: data};
+            }).error(function(){ alert('error getting suras data')});
+        };
+        init();
+      };
+
+      surasApp.factory('surasFactory', surasFactory);
+      function surasFactory($http){
+        var factory = {};
+        factory.getSuras = function(){
+          return $http.get('/explore/sura/');
+        };
+        factory.getWords = function(suraNumber){
+          suraNumber = suraNumber || 1;
+          return $http.get('/explore/suraayas/'.concat(1));
+        };
+        return factory;
+      };
+    </script>
+  </body>
+</html>

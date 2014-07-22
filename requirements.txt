@@ -1,0 +1,7 @@
+Django==1.6.5
+Markdown==2.4.1
+django-extensions==1.3.8
+django-filter==0.7
+-e git+git@github.com:ahmad19526/django-quran.git@27fae2c5ea86da60421909ab79e3f7f145988430#egg=django_quran-origin/master
+djangorestframework==2.3.14
+six==1.7.3
