@@ -47,6 +47,7 @@ THIRDPARTY_APPS = (
     'django_extensions',
     'quran',
     'rest_framework',
+    'gunicorn',
 )
 
 MY_APPS = ()
