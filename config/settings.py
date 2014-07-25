@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 from sys import path as sys_path
 
+import dj_database_url
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 sys_path.append(os.path.join(BASE_DIR, 'apps'))
 
@@ -70,12 +72,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///{}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
+    )
 }
 
 # Internationalization
