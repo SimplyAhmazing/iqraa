@@ -1,3 +1,6 @@
-from django.db import models
+from quran import models as quran_models
 
-# Create your models here.
+
+class MyAya(quran_models.Aya):
+    class Meta:
+        proxy = True

@@ -1,0 +1,61 @@
+@font-face{
+  font-family: 'QuranFont';
+  src: url('fonts/me_quranR3HOQ.ttf') format('truetype');
+}
+
+body {
+  direction: rtl;
+  /* font-family: 'QuranFont'; */
+  /* font-size: 18px; */
+}
+
+.quranic-text{
+  font-size: 22px;
+  text-align: center;
+  font-family: 'QuranFont';
+  cursor: pointer;
+}
+
+.aya-word{
+  float: right;
+  display: inline;
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+  padding: 5px 5px 5px 5px;
+}
+
+.aya-line{
+  float: right;
+  display: block;
+  margin: 5px 5px 5px 5px;
+  text-align: center;
+}
+
+.vocab-words{
+  font-size: 16px;
+  float: right;
+  display: block;
+  float: right;
+}
+.container-fluid [class^="col-"]{
+  border: 1px solid #ccc;
+  border-radius: 3px 3px 3px 3px;
+}
+
+.container-fluid .main-row{
+  position: fixed;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 100%;
+  padding: 0 15px;
+  white-space: nowrap;
+  position: relative;
+}
+
+.row{
+  width: 150%;
+}
+
+.list-col{
+  overflow-y: scroll;
+}

@@ -2,64 +2,55 @@
 <html ng-app="suras">
   <head>
     <title>Interactive Quran</title>
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}css/app.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
     {% verbatim %}
-    <div ng-controller="surasController">
-      <input ng-model="searchText" name="searchText" type="text">
-      <ul>
-        <li ng-repeat="suraItem in suraItems| orderBy: number |filter: searchText" ng-click="openSura(suraItem)">
-          {{ suraItem.name }}
-        </li>
-      </ul>
-      <h3 ng-model="suraInfo">{{ suraInfo.suraItem.name }}</h3>
-      <ul>
-        <li ng-repeat="aya in suraInfo.ayas| orderBy: number ">
-          <span ng-repeat="word in aya.words track by $index">{{ word }}</span>
-        </li>
-      </ul>
+    <div class="container-fluid" ng-controller="surasController">
+      <div class="main-row">
+        <div class="row main-row">
+          <div class="col-sm-2 pull-right list-col">
+            <input ng-model="searchText" name="searchText" type="text">
+            <button ng-model="searchText" ng-click="transcribeSpeech()">Mic</button>
+            <div>
+              <div class="quranic-text" ng-repeat="suraItem in suraItems| orderBy: number |filter: searchText" ng-click="openSura(suraItem)">
+                {{ suraItem.name }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5 pull-right list-col">
+            <h3 ng-model="suraInfo">{{ suraInfo.sura.name }}</h3>
+            <div ng-repeat="aya in suraInfo.ayas| orderBy: number ">
+              <div class="quranic-text aya-word" ng-repeat="word in aya.words track by $index" ng-click="openWord(word)">{{ word.token }}</div>
+            </div>
+          </div>
+
+          <div class="col-md-4 pull-right list-col">
+            <h3 direction="ltr" ng-model="vocabWords">Words</h3>
+            <div class="quranic-text vocab-word" ng-repeat="word in vocabWords track by $index">
+              {{ word.token }}<br>
+              {{ word.root }} :<span direction="ltr">Root</span><br>
+              <span direction="ltr">Root occurences: </span> {{ word.root_occurences }}<br>
+              {{ word.lemma }} :<span direction="ltr">Lemma</span><br>
+              <span direction="ltr">Lemma occurences:</span> {{ word.lemma_occurences }}<br>
+              <hr>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
-    {% endverbatim %}
+  </div>
+  {% endverbatim %}
 
-    <script src="{{ STATIC_URL }}js/angular.js"></script>
-
-    <script>
-      var surasApp = angular.module('suras', []);
-      surasApp.controller('surasController', surasController);
-
-      function surasController($scope, surasFactory){
-        function init(){
-          surasFactory.getSuras().success(function(data){
-            $scope.suraItems = data;
-            }).error(function(){
-              alert('error getting suras data');
-            });
-
-            $scope.suraInfo = {sura: null, ayas: []};
-        };
-
-        $scope.openSura = function(suraItem){
-          surasFactory.getWords(suraItem.number).success(function(data){
-              $scope.suraInfo = {sura: suraItem, ayas: data};
-              console.log($scope.suraInfo);
-            }).error(function(){ alert('error getting suras data')});
-        };
-        init();
-      };
-
-      surasApp.factory('surasFactory', surasFactory);
-      function surasFactory($http){
-        var factory = {};
-        factory.getSuras = function(){
-          return $http.get('/explore/sura/');
-        };
-        factory.getWords = function(suraNumber){
-          suraNumber = suraNumber || 1;
-          return $http.get('/explore/suraayas/'.concat(suraNumber));
-        };
-        return factory;
-      };
-    </script>
-  </body>
+  <script src="{{ STATIC_URL }}js/vendor/jquery.js"></script>
+  <script src="{{ STATIC_URL }}js/vendor/angular.js"></script>
+  <script src="{{ STATIC_URL }}js/vendor/bootstrap.js"></script>
+  <script src="{{ STATIC_URL }}js/vendor/ui-bootstrap-tpls-0.11.0.js"></script>
+  <script src="{{ STATIC_URL }}js/app/app.js"></script>
+</body>
 </html>
