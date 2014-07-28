@@ -40,13 +40,20 @@ body {
 .container-fluid [class^="col-"]{
   border: 1px solid #ccc;
   border-radius: 3px 3px 3px 3px;
+
+  height: 900px;
+}
+
+.container{
+  position: fixed;
+  overflow: hidden;
+  height: 900px;
 }
 
 .container-fluid .main-row{
   position: fixed;
   overflow-x: scroll;
   overflow-y: hidden;
-  height: 100%;
   padding: 0 15px;
   white-space: nowrap;
   position: relative;
@@ -57,5 +64,6 @@ body {
 }
 
 .list-col{
+  height: 900px
   overflow-y: scroll;
 }

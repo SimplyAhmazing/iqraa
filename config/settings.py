@@ -31,7 +31,7 @@ DEBUG = (ENV.get('DEBUG', 'True') == 'True')
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', ]
 
 
 # Application definition
