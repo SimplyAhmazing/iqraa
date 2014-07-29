@@ -1,0 +1,3 @@
+<div ng-repeat="aya in suraInfo.ayas| orderBy: number ">
+    <div class="quranic-text aya-word" ng-repeat="word in aya.words track by $index" ng-click="openWord(word)">{{ word.token }}</div>
+</div>

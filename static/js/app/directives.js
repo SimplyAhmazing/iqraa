@@ -17,6 +17,21 @@ angular.module('suras.directives', []).
       replace: true,
       templateUrl: 'static/js/app/templates/sura-list-item.html',
     }
+  }).
+  directive("suraDetail", function(){
+    return {
+      restrict: "EA",
+      replace: true,
+      templateUrl: 'static/js/app/templates/sura-detail.html',
+    }
+  }).
+  directive("suraAyaDetail", function(){
+    return {
+      restrict: "EA",
+      replace: true,
+      templateUrl: 'static/js/app/templates/sura-aya-detail.html',
+    }
   }
-);
+)
+;
 

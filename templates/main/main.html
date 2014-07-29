@@ -19,10 +19,7 @@
           </div>
 
           <div class="col-md-5 pull-right list-col">
-            <h3 ng-model="suraInfo">{{ suraInfo.sura.name }}</h3>
-            <div ng-repeat="aya in suraInfo.ayas| orderBy: number ">
-              <div class="quranic-text aya-word" ng-repeat="word in aya.words track by $index" ng-click="openWord(word)">{{ word.token }}</div>
-            </div>
+            <sura-detail></sura-detail>
           </div>
 
           <div class="col-md-4 pull-right list-col">
