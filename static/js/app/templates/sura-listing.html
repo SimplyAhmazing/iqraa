@@ -1,0 +1,5 @@
+<div>
+    <div class="quranic-text" ng-repeat="suraItem in suraItems| orderBy: number |filter: searchText" ng-click="openSura(suraItem)">
+        <sura-list-item></sura-list-item>
+    </div>
+</div>

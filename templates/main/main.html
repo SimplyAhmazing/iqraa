@@ -15,11 +15,7 @@
           <div class="col-sm-2 pull-right list-col">
             <input ng-model="searchText" name="searchText" type="text">
             <button ng-model="searchText" ng-click="transcribeSpeech()">Mic</button>
-            <div>
-              <div class="quranic-text" ng-repeat="suraItem in suraItems| orderBy: number |filter: searchText" ng-click="openSura(suraItem)">
-                {{ suraItem.name }}
-              </div>
-            </div>
+            <sura-Listing></sura-Listing>
           </div>
 
           <div class="col-md-5 pull-right list-col">
@@ -51,6 +47,8 @@
   <script src="{{ STATIC_URL }}js/vendor/angular.js"></script>
   <script src="{{ STATIC_URL }}js/vendor/bootstrap.js"></script>
   <script src="{{ STATIC_URL }}js/vendor/ui-bootstrap-tpls-0.11.0.js"></script>
+  <script src="{{ STATIC_URL }}js/app/directives.js"></script>
+  <script src="{{ STATIC_URL }}js/app/controllers.js"></script>
   <script src="{{ STATIC_URL }}js/app/app.js"></script>
 </body>
 </html>
