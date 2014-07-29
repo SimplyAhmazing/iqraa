@@ -31,7 +31,13 @@ angular.module('suras.directives', []).
       replace: true,
       templateUrl: 'static/js/app/templates/sura-aya-detail.html',
     }
+  }).
+  directive("wordDetail", function(){
+    return {
+      restrict: "EA",
+      replace: true,
+      templateUrl: 'static/js/app/templates/word-detail.html',
+    }
   }
-)
-;
+);
 

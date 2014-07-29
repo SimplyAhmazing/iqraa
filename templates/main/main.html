@@ -23,15 +23,7 @@
           </div>
 
           <div class="col-md-4 pull-right list-col">
-            <h3 direction="ltr" ng-model="vocabWords">Words</h3>
-            <div class="quranic-text vocab-word" ng-repeat="word in vocabWords track by $index">
-              {{ word.token }}<br>
-              {{ word.root }} :<span direction="ltr">Root</span><br>
-              <span direction="ltr">Root occurences: </span> {{ word.root_occurences }}<br>
-              {{ word.lemma }} :<span direction="ltr">Lemma</span><br>
-              <span direction="ltr">Lemma occurences:</span> {{ word.lemma_occurences }}<br>
-              <hr>
-            </div>
+            <word-detail></word-detail>
           </div>
 
         </div>
